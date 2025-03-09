@@ -5,26 +5,32 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Task Management API',
+      title: 'Kanban API',
       version: '1.0.0',
-      description: 'API documentation for Task Management System',
+      description: 'API documentation for Kanban',
     },
     servers: [
       {
         url: 'http://localhost:5000',
       },
     ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
   },
-  apis: ['./routes/*.js', './models/*.js'], // Path to the API docs
+  apis: ['./routes/*.js', './models/*.js'],
 };
 
 const specs = swaggerJsdoc(options);
 
 export const swaggerDocs = (app) => {
-  // Swagger page
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
-
-  // Docs in JSON format
   app.get('/api-docs.json', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(specs);

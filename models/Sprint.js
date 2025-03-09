@@ -47,3 +47,43 @@ sprintSchema.pre('save', function(next) {
 const Sprint = mongoose.model('Sprint', sprintSchema);
 
 export default Sprint;
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Sprint:
+ *       type: object
+ *       required:
+ *         - name
+ *         - startDate
+ *         - endDate
+ *         - createdBy
+ *       properties:
+ *         name:
+ *           type: string
+ *           description: The name of the sprint
+ *         description:
+ *           type: string
+ *           description: The description of the sprint
+ *         startDate:
+ *           type: string
+ *           format: date
+ *           description: The start date of the sprint
+ *         endDate:
+ *           type: string
+ *           format: date
+ *           description: The end date of the sprint
+ *         status:
+ *           type: string
+ *           enum: [PLANNING, ACTIVE, COMPLETED]
+ *           default: PLANNING
+ *         createdBy:
+ *           type: string
+ *           description: The ID of the user who created the sprint
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *         updatedAt:
+ *           type: string
+ *           format: date-time
+ */

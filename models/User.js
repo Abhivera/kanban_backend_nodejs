@@ -59,3 +59,41 @@ userSchema.methods.comparePassword = async function(candidatePassword) {
 const User = mongoose.model('User', userSchema);
 
 export default User;
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       required:
+ *         - username
+ *         - email
+ *         - password
+ *         - name
+ *       properties:
+ *         username:
+ *           type: string
+ *           description: The username of the user
+ *         email:
+ *           type: string
+ *           description: The email of the user
+ *         password:
+ *           type: string
+ *           description: The password of the user
+ *         name:
+ *           type: string
+ *           description: The name of the user
+ *         role:
+ *           type: string
+ *           enum: [ADMIN, MANAGER, DEVELOPER, REPORTER]
+ *           default: DEVELOPER
+ *         profilePicture:
+ *           type: string
+ *           description: The profile picture URL of the user
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *         updatedAt:
+ *           type: string
+ *           format: date-time
+ */

@@ -105,3 +105,73 @@ taskSchema.pre('save', function(next) {
 const Task = mongoose.model('Task', taskSchema);
 
 export default Task;
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Task:
+ *       type: object
+ *       required:
+ *         - title
+ *         - assignee
+ *         - reporter
+ *       properties:
+ *         title:
+ *           type: string
+ *           description: The title of the task
+ *         description:
+ *           type: string
+ *           description: The description of the task
+ *         priority:
+ *           type: string
+ *           enum: [LOW, MEDIUM, HIGH, URGENT]
+ *           default: MEDIUM
+ *         status:
+ *           type: string
+ *           enum: [TO_DO, IN_PROGRESS, REVIEW, DONE]
+ *           default: TO_DO
+ *         assignee:
+ *           type: string
+ *           description: The ID of the user assigned to the task
+ *         reporter:
+ *           type: string
+ *           description: The ID of the user who reported the task
+ *         sprint:
+ *           type: string
+ *           description: The ID of the sprint the task belongs to
+ *         attachments:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               filename:
+ *                 type: string
+ *               path:
+ *                 type: string
+ *               uploadedAt:
+ *                 type: string
+ *                 format: date-time
+ *               uploadedBy:
+ *                 type: string
+ *         history:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               status:
+ *                 type: string
+ *               updatedBy:
+ *                 type: string
+ *               comment:
+ *                 type: string
+ *               timestamp:
+ *                 type: string
+ *                 format: date-time
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *         updatedAt:
+ *           type: string
+ *           format: date-time
+ */

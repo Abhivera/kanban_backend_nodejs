@@ -1,9 +1,10 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
+
 import connectDB from './config/db.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { swaggerDocs } from './swagger.js';
 
 // Routes
 import taskRoutes from './routes/taskRoutes.js';
@@ -11,8 +12,7 @@ import sprintRoutes from './routes/sprintRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 
-// Load environment variables
-dotenv.config();
+
 
 // Initialize express
 const app = express();
@@ -34,13 +34,13 @@ const __dirname = path.dirname(__filename);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
-app.use('/api/tasks', taskRoutes);
-app.use('/api/sprints', sprintRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/auth', authRoutes);
+app.use('/tasks', taskRoutes);
+app.use('/sprints', sprintRoutes);
+app.use('/users', userRoutes);
+app.use('/auth', authRoutes);
 
-// Health check route
-app.get('/health', (req, res) => {
+// server is running or not  check route
+app.get('/test_server', (req, res) => {
   res.status(200).json({ status: 'ok', message: 'Server is running' });
 });
 
@@ -53,7 +53,10 @@ app.use((err, req, res, next) => {
   });
 });
 
+// Swagger documentation
+swaggerDocs(app);
+
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on  http://localhost:${PORT}/api-docs`);
 });
