@@ -11,7 +11,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:5000',
+        url: 'https://kanbanbackendnodejs-production.up.railway.app',
       },
     ],
     components: {
